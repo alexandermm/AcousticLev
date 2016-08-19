@@ -14,9 +14,9 @@ The library uses forward mode automatic differentiation to quickly compute the p
 
 
 ## How to use the library (following the code in particleLev.cpp)
-The first step is to declare all the geometric, physical and optimization constants used for the calculation.
+* The first step is to declare all the geometric, physical and optimization constants used for the calculation. The w Eigen matrix is used to weight different directions (x,y or z) so that the shape of the sound field around the levitation point is adecuate (see paper). When using one phased array, the w should be weighted towards the direction the array is pointing to.
 
-The second step is to declare rectangular phased array objects. When the arrays are declared, their center is at the origin with the sound transducers pointing in the same direction as the z-axis. Each declared array can be translated or rotated. After moving all the needed arrays to their desired locations. One adds them together (using the overloaded + sign) to form a single fixed array. This new array now contains all the transducer locations and normal vectors which are used to calculate the transducer settings (see paper). The class declaration is in the file transducerArray.hpp.
+* The second step is to declare rectangular phased array objects. When the arrays are declared, their center is at the origin with the each of the sound transducers in the array pointing in the same direction as the z-axis. Each declared array can be translated or rotated. After moving all the needed arrays to their desired locations, one adds them together (using the overloaded + sign) to form a single fixed array. This new array now contains all the transducer locations and normal vectors which are used to calculate the transducer settings (see paper). The class declaration is in the file transducerArray.hpp.
 
 
 
