@@ -9,4 +9,4 @@ The library uses the following dependencies:
 * [NLopt] (http://ab-initio.mit.edu/nlopt/) (for optimization)
 * [MayaVi] (http://code.enthought.com/projects/mayavi/) (in the python file for visualization)
 
-The library uses forward mode automatic differentiation to quickly compute the pressure field at any point due to the phased array/s without any approximation errors. It uses modified FADBAD++ files that include Bessel functions to model the sound transducer's pressure field.
+The library uses forward mode automatic differentiation to quickly compute the pressure field at any point due to the phased array/s without any approximation errors. It uses modified [FADBAD++] (http://http://www.fadbad.com/fadbad.html) files that include Bessel functions to model the sound transducer's pressure field.
