@@ -19,6 +19,6 @@ The library uses forward mode automatic differentiation to quickly compute the p
 
 * The second step is to declare rectangular phased array objects. When the arrays are declared, their center is at the origin with the each of the sound transducers in the array pointing in the same direction as the z-axis. Each declared array can be translated or rotated. After moving all the needed arrays to their desired locations, one adds them together (using the overloaded + sign) to form a single fixed array. This new array now contains all the transducer locations and normal vectors which are used to calculate the transducer settings (see paper). The class declaration is in the file transducerArray.hpp.
 
-* 
+* The third step is to declare the desired levitation points, and the Mj Eigen matrix. The Mj matrix stores all the sound pressure derivatives (up to third order if needed) with respect to a fixed levitation point, for each of the transducers in the final single phased array. This values are used thorughout the calculations needed to optimize the array and to compute field values (pressure, potential or force) at a given point (see paper). The values are exact and they are calculated using forward mode automatic differentiation using an analytic model of the sound field for each transducer and FADBAD++. The functions doing this are in the file transducerDerivatives.cpp. 
 
 
