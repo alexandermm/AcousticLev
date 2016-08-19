@@ -10,3 +10,13 @@ The library uses the following dependencies:
 * [MayaVi] (http://code.enthought.com/projects/mayavi/) (in the python file for visualization)
 
 The library uses forward mode automatic differentiation to quickly compute the pressure field at any point due to the phased array/s without any approximation errors. It uses modified [FADBAD++] (http://www.fadbad.com/fadbad.html) files that include Bessel functions to model the sound transducer's pressure field.
+
+
+
+## How to use the library (following the code in particleLev.cpp)
+The first step is to declare all the geometric, physical and optimization constants used for the calculation.
+
+The second step is to declare rectangular phased array objects. When the arrays are declared, their center is at the origin with the sound transducers pointing in the same direction as the z-axis. Each declared array can be translated or rotated. After moving all the needed arrays to their desired locations. One adds them together (using the overloaded + sign) to form a single fixed array. This new array now contains all the transducer locations and normal vectors which are used to calculate the transducer settings (see paper). The class declaration is in the file transducerArray.hpp.
+
+
+
