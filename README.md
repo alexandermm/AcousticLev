@@ -23,6 +23,6 @@ The library uses forward mode automatic differentiation to quickly compute the p
 
 * The final step is to call NLopt and the optimization function and its gradient in optFunction.hpp to optimize the phases of each of the transducers. This function is given as U_aa (eq. 10) in the paper. This function should have a 2 in front of the second term and was derived by using (mag(p))^2 = p.p instead of mag(p) = p.p (eq. 11) as shown in the paper.
 
-* For post-processing, one can calculate the imaginary pressure, the potential and force due to the pressure field produced by all of the transducers to check that all the forces are pointing towards the desired levitation point. This data can be accesed by the showData.py script to produce a .vtk file. The functions that can do this are in the file soundField.hpp.
+* For post-processing, one can calculate the imaginary pressure, the potential and force due to the pressure field produced by all of the transducers to check that all the forces are pointing towards the desired levitation point. This data can be accessed by the showData.py script to produce a .vtk file. The functions that can do this are in the file soundField.hpp.
 
 * Also one can compute particle paths that a particle would take from a given point to a levitation point. This includes air resistance. This is done using a [4th order Rugge-Kutta scheme] (http://lpsa.swarthmore.edu/NumInt/NumIntFourth.html) with a given fixed time step. The functions doing this are found in particlePath.hpp.
