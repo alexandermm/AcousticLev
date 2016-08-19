@@ -13,9 +13,6 @@ The library uses forward mode automatic differentiation to quickly compute the p
 
 
 
-
-
-
 ## How to use the library (following the code in particleLev.cpp)
 * The first step is to declare all the geometric, physical and optimization constants used for the calculation. The variable sf is used to scale the physical values so that they are all closer in magnitude. opt_scale is used to scale the optimization function used by NLopt so that the solution converges faster. The w Eigen matrix is used to weight different directions 
 (x,y or z) so that the shape of the sound field around the levitation point is adecuate (see paper). When using one phased array, the w should be weighted towards the direction the array is pointing to.
