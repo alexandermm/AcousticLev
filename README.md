@@ -6,7 +6,7 @@ All that is needed to use the library is to put the folder acousticHologram in t
 
 The library uses the following dependencies:
 * [Eigen] (http://eigen.tuxfamily.org) (for matrix operations)
-* [NLopt] (ab-initio.mit.edu/nlopt/) (for optimization)
-* [MayaVi] (code.enthought.com/projects/mayavi/) (in the python file for visualization)
+* [NLopt] (http://ab-initio.mit.edu/nlopt/) (for optimization)
+* [MayaVi] (http://code.enthought.com/projects/mayavi/) (in the python file for visualization)
 
 The library uses forward mode automatic differentiation to quickly compute the pressure field at any point due to the phased array/s without any approximation errors. It uses modified FADBAD++ files that include Bessel functions to model the sound transducer's pressure field.
