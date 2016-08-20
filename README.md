@@ -29,6 +29,11 @@ The library uses forward mode automatic differentiation to quickly compute the p
 
 
 
-# Details about how the automatic differentiation is done
-The [automatic differentiation] (https://en.wikipedia.org/wiki/Automatic_differentiation) is done in forward mode three times to get the third order derivatives needed for the optimization function, using the forward mode file of FADBAD++ (fadiff.h together with the main header file fadbad.h).
-In theory, one should perform the differentiation in reverse mode the first time since the number of dependent variables (1) is lower than the number of independadent variables (3). That is the behabiour for a large number of independent variables. However, when one programs both alternatives, using the reverse mode differentitation first and then forward differentitaion once (for calculating forces for example) is 35% slower than using forward differentitaion twice. This is due to the more complex implementation needed for reverse differentiation, and the fact that the ratio between dependent and independent variables is low. 
+## Details about how the automatic differentiation is done
+The [automatic differentiation] (https://en.wikipedia.org/wiki/Automatic_differentiation) is done in forward mode three times to get the third order derivatives needed for the optimization function, using the forward mode file of FADBAD++ (fadiff.h together with the main header file fadbad.h). In theory, one should perform the differentiation in reverse mode the first time since the number of dependent variables (1) is lower than the number of independadent variables (3). That is the behabiour for a large number of independent variables. However, when one programs both alternatives, using the reverse mode differentiation first and then forward differentiation once (for calculating forces for example) is 35% slower than using forward differentiation twice. This is due to the more complex implementation needed for reverse differentiation, and the fact that the ratio between dependent and independent variables is low. By declaring the number of variables being differentitated each time forward mode is used (using the stack-based forward method implementation of FADBAD++), the run time was reduced a further 33% (again for calculating forces).
+
+
+
+## Details on how the functions in the paper are derived
+Hello
+
