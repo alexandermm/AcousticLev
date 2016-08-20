@@ -35,7 +35,7 @@ The [automatic differentiation] (https://en.wikipedia.org/wiki/Automatic_differe
 
 
 ## Details on how the functions in the paper are derived
-The U_aa function can be derived from the Gorkov potential (eq. 3), by noting that (mag(p))^2 = p.p, and by appling the product rule on eq. 12. This yields for the derivative with respect to variable c:
+The paper uses equations originaly derived in the paper: [Acoustofluidics 7: the acoustic radiation force on small particles] (http://web-files.ait.dtu.dk/bruus/TMF/publications/pub2011/Bruus_Acoustofluidics_Tutorial_07_Lab_Chip_12_1014_2012.pdf). The U_aa function can be derived from the Gorkov potential (eq. 3), by noting that (mag(p))^2 = p.p, and by appling the product rule on eq. 12. This yields for the derivative with respect to variable c:
 
 (a.b)_c = (a.b_c) + (a_c.b)
 
