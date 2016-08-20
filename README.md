@@ -26,3 +26,9 @@ The library uses forward mode automatic differentiation to quickly compute the p
 * For post-processing, one can calculate the imaginary pressure, the potential and force due to the pressure field produced by all of the transducers to check that all the forces are pointing towards the desired levitation point. This data can be accessed by the showData.py script to produce a .vtk file. The functions that can do this are in the file soundField.hpp.
 
 * Also one can compute particle paths that a particle would take from a given point to a levitation point. This includes air resistance. This is done using a [4th order Rugge-Kutta scheme] (http://lpsa.swarthmore.edu/NumInt/NumIntFourth.html) with a given fixed time step. The functions doing this are found in particlePath.hpp.
+
+
+
+# Details about how the automatic differentiation is done
+The [automatic differentiation] (https://en.wikipedia.org/wiki/Automatic_differentiation) is done in forward mode three times to get the third order derivatives needed for the optimization function, using the forward mode file of FADBAD++ (fadiff.h together with the main header file fadbad.h).
+In theory, one should perform the differentiation in reverse mode the first time since the number of dependent variables (1) is lower than the number of independadent variables (3). That is the behabiour for a large number of independent variables. However, when one programs both alternatives, using the reverse mode differentitation first and then forward differentitaion once (for calculating forces for example) is 35% slower than using forward differentitaion twice. This is due to the more complex implementation needed for reverse differentiation, and the fact that the ratio between dependent and independent variables is low. 
