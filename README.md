@@ -36,6 +36,8 @@ The [automatic differentiation] (https://en.wikipedia.org/wiki/Automatic_differe
 
 ## Details on how the functions in the paper are derived
 The U_aa function can be derived from the Gorkov potential (eq. 3), by noting that (mag(p))^2 = p.p, and by appling the product rule on eq. 12. This yields for the derivative with respect to variable c:
+
 (a.b)_c = (a.b_c) + (a_c.b)
+
 Substituting this equation twice in (eq. 3) yields the U_aa function.
 
