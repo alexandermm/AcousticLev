@@ -28,6 +28,9 @@ The library uses forward mode automatic differentiation to quickly compute the p
 * Also one can compute particle paths that a particle would take from a given point to a levitation point. This includes air resistance. This is done using a [4th order Rugge-Kutta scheme] (http://lpsa.swarthmore.edu/NumInt/NumIntFourth.html) with a given fixed time step. The functions doing this are found in particlePath.hpp.
 
 
+The following two sections go into more detail on how the library is designed and what equations are used, one does not need to read them to use the library. 
+
+
 
 ## Details about how the automatic differentiation is done
 The [automatic differentiation] (https://en.wikipedia.org/wiki/Automatic_differentiation) is done in forward mode three times to get the third order derivatives needed for the optimization function, using the forward mode file of FADBAD++ (fadiff.h together with the main header file fadbad.h). In theory, one should perform the differentiation in reverse mode the first time since the number of dependent variables (1) is lower than the number of independadent variables (3). That is the behabiour for a large number of independent variables. However, when one programs both alternatives, using the reverse mode differentiation once first and then forward differentiation once (for calculating forces for example) is 35% slower than using forward differentiation twice. This is due to the more complex implementation needed for reverse differentiation, and the fact that the ratio between dependent and independent variables is low. By declaring the number of variables being differentitated each time forward mode is used (using the stack-based forward method implementation of FADBAD++), the run time was reduced a further 33% (again for calculating forces). The real and complex components of the pressure field are differentiated separately so one can use FADBAD++, since the transducer sound field (eq. 7) can be separated into real and complex terms. 
@@ -41,7 +44,7 @@ The U_aa function can be derived from the Gorkov potential (eq. 3), by noting th
 
 Substituting this equation twice in (eq. 3) yields the U_aa function (with an extra 2 in front of the second term).
 
-To find eq. 13 used for the gradient calculation which is then used by NLopt, one again uses the product rule on eq. 12. Note that the sound field equation for each transducer can be separated into a real and an imaginary component. Each with a sine or cosine term. For example, since (cos (x))_x = -sin(x), When one does the derivative of Real(P_g)_phasej one gets a term equal to the negative imaginary component, -Imag(P_g^j), hence the negative terms in eq. 13. No complex calculus needs to be used.
+To find eq. 13 used for the gradient calculation which is then used by NLopt, one again uses the product rule on eq. 12. Note that the sound field equation for each transducer can be separated into a real and an imaginary component. The terms are in the form k*cos(g(x)) and k*sin(g(x)). For example, since (cos (x))_x = -sin(x), When one does the derivative of Real(P_g)_phasej one gets a term equal to the negative imaginary component, -Imag(P_g^j), hence the negative terms in eq. 13. No complex calculus needs to be used.
 
 The paper uses acoustic the radiation force equation originaly derived in the paper: [Acoustofluidics 7: the acoustic radiation force on small particles] (http://web-files.ait.dtu.dk/bruus/TMF/publications/pub2011/Bruus_Acoustofluidics_Tutorial_07_Lab_Chip_12_1014_2012.pdf). 
 
