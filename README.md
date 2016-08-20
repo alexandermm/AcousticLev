@@ -28,7 +28,7 @@ The library uses forward mode automatic differentiation to quickly compute the p
 * Also one can compute particle paths that a particle would take from a given point to a levitation point. This includes air resistance. This is done using a [4th order Rugge-Kutta scheme] (http://lpsa.swarthmore.edu/NumInt/NumIntFourth.html) with a given fixed time step. The functions doing this are found in particlePath.hpp.
 
 
-The following two sections go into more detail on how the library is designed and what equations are used, one does not need to read them to use the library. 
+The following two sections go into more detail on how the library is designed and what equations are used. One does not need to read them in order to use the library. 
 
 
 
@@ -38,13 +38,13 @@ The [automatic differentiation] (https://en.wikipedia.org/wiki/Automatic_differe
 
 
 ## Details on how the functions in the paper are derived
-The U_aa function can be derived from the Gorkov potential (eq. 3), by noting that (mag(p))^2 = p.p, and by appling the product rule on eq. 12. This yields for the derivative with respect to variable c:
+The U_aa function can be derived from the Gorkov potential (eq. 3), by noting that (mag(p))^2 = p.p, and by applying the product rule on eq. 12. This yields for the derivative with respect to variable c:
 
 (a.b)_c = (a.b_c) + (a_c.b)
 
 Substituting this equation twice in (eq. 3) yields the U_aa function (with an extra 2 in front of the second term).
 
-To find eq. 13 used for the gradient calculation which is then used by NLopt, one again uses the product rule on eq. 12. Note that the sound field equation for each transducer can be separated into a real and an imaginary component. The terms are in the form k*cos(g(x)) and k*sin(g(x)). For example, since (cos (x))_x = -sin(x), When one does the derivative of Real(P_g)_phasej one gets a term equal to the negative imaginary component, -Imag(P_g^j), hence the negative terms in eq. 13. No complex calculus needs to be used.
+To find eq. 13 used for the gradient calculation which is then used by NLopt, one again uses the product rule on eq. 12. Note that the sound field equation for each transducer can be separated into a real and an imaginary component. The terms are in the form k*cos(phasej) and k*sin(phasej). For example, since (cos (x))_x = -sin(x), When one does the derivative of Real(P_g)_phasej one gets a term equal to the negative imaginary component, -Imag(P_g^j), hence the negative terms in eq. 13. No complex calculus needs to be used.
 
 The paper uses acoustic the radiation force equation originaly derived in the paper: [Acoustofluidics 7: the acoustic radiation force on small particles] (http://web-files.ait.dtu.dk/bruus/TMF/publications/pub2011/Bruus_Acoustofluidics_Tutorial_07_Lab_Chip_12_1014_2012.pdf). 
 
