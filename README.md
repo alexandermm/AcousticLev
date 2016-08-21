@@ -39,7 +39,7 @@ By declaring the number of variables being differentiated each time forward mode
 
 
 
-## Details on how the functions in the paper are derived
+## Details on how the equations in the paper are derived
 The U_aa function can be derived from the Gorkov potential (eq. 3), by noting that (mag(p))^2 = p.p, and by applying the product rule on eq. 12. This yields for the derivative with respect to variable c:
 
 (a.b)_c = (a.b_c) + (a_c.b)
@@ -50,3 +50,9 @@ To find eq. 13 used for the gradient calculation which is then used by NLopt, on
 
 The paper uses acoustic the radiation force equation originally derived in the paper: [Acoustofluidics 7: the acoustic radiation force on small particles] (http://web-files.ait.dtu.dk/bruus/TMF/publications/pub2011/Bruus_Acoustofluidics_Tutorial_07_Lab_Chip_12_1014_2012.pdf). 
 
+
+
+## Library architecture
+The library was designed to be accurate but also fast, hence the decision to use automatic differentiation. The library was designed to also be easy to read. This was done by naming the data types in a similar way as the paper, and using the inline function id() found in common.hpp.
+
+The Eigen matrix Mj for example, is based on the variable M_j in the paper, and it contains all the transducer pressure derivatives, where the rows are for each transducer and each column is for each derivative. The function id() is used in the code and with Mj in particular as follows: when Mj is filled with the output of the functions using FADBAD++ (in transducerDerivatives.hpp) the function id(a,b,c) corresponds to the location to store the first derivative (a) with respect to variable x,y,z or none, the second derivative (b) with respect to the same variables and so on. So for example, if one wants to get or write the value of the pressure for transducer n, one uses Mj(n, id(0,0,0)). If one wants Mj(n)_yx, one uses Mj(n, id(2,1,0)) and if one wants Mj(n)_zzz, one uses Mj(n, id(3,3,3)).
