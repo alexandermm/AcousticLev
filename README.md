@@ -1,6 +1,6 @@
 
 
-<header>
+
 
 <style TYPE="text/css">
     code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
@@ -25,12 +25,12 @@
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-</header>
+
 
 
 
 # AcousticLev
-AcousticLev is a C++ header only `$x^2$` library to calculate ultrasonic phase array/s settings to levitate particles using automatic differentiation.
+AcousticLev is a C++ header only library to calculate ultrasonic phase array/s settings to levitate particles using automatic differentiation.
 
 The library is an implementation of the algorithm found in this [paper] (http://www.nature.com/ncomms/2015/151027/ncomms9661/full/ncomms9661.html). 
 All that is needed to use the library is to put the folder acousticHologram in the same folder with the C++ file that uses it. An example of the library being used is particleLev.cpp. One can use the python file showData.py to see the results of the calculations. The python file also writes a .vtk file that can be viewed in [ParaView] (http://www.paraview.org), that shows the magnitude of the pressure, potential and force fields due to the phased array/s.
