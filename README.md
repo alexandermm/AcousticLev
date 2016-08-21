@@ -12,4 +12,4 @@ The library uses the following dependencies:
 
 The library uses forward mode automatic differentiation to quickly compute the pressure field at any point due to the phased array/s without any approximation errors. It uses modified [FADBAD++] (http://www.fadbad.com/fadbad.html) files that include Bessel functions to model the sound transducer's pressure field.
 
-The library manual is the pdf file AcousticLev.pdf.
+More information on the libabry can be found in the manual (AcousticLev.pdf).
