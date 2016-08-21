@@ -1,14 +1,27 @@
 
+<html>
+<style TYPE="text/css">
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+</style>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    showProcessingMessages: false,
-    tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
-  });
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // removed 'code' entry
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
 </script>
-<script type="text/javascript" src="../MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
 # AcousticLev
-AcousticLev is a C++ header only library to $ x^2 $ calculate ultrasonic phase array/s settings to levitate particles using automatic differentiation.
+AcousticLev is a C++ header only library to $$ x^2 $$ calculate ultrasonic phase array/s settings to levitate particles using automatic differentiation.
 
 The library is an implementation of the algorithm found in this [paper] (http://www.nature.com/ncomms/2015/151027/ncomms9661/full/ncomms9661.html). 
 All that is needed to use the library is to put the folder acousticHologram in the same folder with the C++ file that uses it. An example of the library being used is particleLev.cpp. One can use the python file showData.py to see the results of the calculations. The python file also writes a .vtk file that can be viewed in [ParaView] (http://www.paraview.org), that shows the magnitude of the pressure, potential and force fields due to the phased array/s.
@@ -70,3 +83,4 @@ When one needs to calculate only the pressure, the potential and force at a give
 
 For calculating pressure, potential and force, there is a common initial loop that sums all the pressures from each transducer, however one only needs to sum up to second order derivatives for calculating the force (see force equation), up to first order derivatives for the potential (see eq. 3 in paper) and only the pressure terms for the pressure. This loop can be taken out of the three corresponding functions (inline pressureDerivatives() in transducerDerivatives.hpp) and when summing over pressure terms, their first, or their second derivatives, the summation will be over id() = 0, id() = 0 to 3 and id() = 0 to 15, since id(a,b,c) is equal to a + b * MAX_ID + c * MAX_ID * MAX_ID with MAX_ID = 4. This can be done because the right derivatives are stored contiguously in the columns of the Mj matrix.
 
+</html>
