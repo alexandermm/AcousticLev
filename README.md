@@ -53,6 +53,7 @@ To find eq. 13 used for the gradient calculation which is then used by NLopt, on
 
 The paper uses acoustic the radiation force equation originally derived in the paper: [Acoustofluidics 7: the acoustic radiation force on small particles] (http://web-files.ait.dtu.dk/bruus/TMF/publications/pub2011/Bruus_Acoustofluidics_Tutorial_07_Lab_Chip_12_1014_2012.pdf). 
 
+The force at a point can be derived by using the fact that the force is the negative of the gradient of the potential (eq. 3) and the equation for (a.b)_c shown above.
 
 
 ## Library architecture
