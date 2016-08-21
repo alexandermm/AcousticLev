@@ -21,7 +21,7 @@
     
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
 
@@ -90,4 +90,3 @@ When one needs to calculate only the pressure, the potential and force at a give
 
 For calculating pressure, potential and force, there is a common initial loop that sums all the pressures from each transducer, however one only needs to sum up to second order derivatives for calculating the force (see force equation), up to first order derivatives for the potential (see eq. 3 in paper) and only the pressure terms for the pressure. This loop can be taken out of the three corresponding functions (inline pressureDerivatives() in transducerDerivatives.hpp) and when summing over pressure terms, their first, or their second derivatives, the summation will be over id() = 0, id() = 0 to 3 and id() = 0 to 15, since id(a,b,c) is equal to a + b * MAX_ID + c * MAX_ID * MAX_ID with MAX_ID = 4. This can be done because the right derivatives are stored contiguously in the columns of the Mj matrix.
 
-</script>
