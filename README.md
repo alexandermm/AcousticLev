@@ -49,7 +49,7 @@ The U_aa function can be derived from the Gorkov potential (eq. 3), by noting th
 
 Substituting this equation twice in (eq. 3) yields the U_aa function (with an extra 2 in front of the second term).
 
-To find eq. 13 used for the gradient calculation which is then used by NLopt, one again uses the product rule on eq. 12. Note that the sound field equation for each transducer can be separated into a real and an imaginary component using [Euler's formula] (https://en.wikipedia.org/wiki/Euler%27s_formula). The terms are in the form k * cos(phasej) and k * sin(phasej). For example, since (cos (x))_x = -sin(x), When one does the derivative of Real(P_g)_phase^j one gets a term equal to the negative imaginary component, -Imag(P^j_g), hence the negative terms in eq. 13. No complex calculus needs to be used.
+To find eq. 13 used for the gradient calculation which is then used by NLopt, one again uses the product rule on eq. 12. Note that the sound field equation for each transducer can be separated into a real and an imaginary component using [Euler's formula] (https://en.wikipedia.org/wiki/Euler%27s_formula). The terms are in the form k * cos(phase^j) and k * sin(phase^j). For example, since (cos (x))_x = -sin(x), When one does the derivative of Real(P_g)_phase^j one gets a term equal to the negative imaginary component, -Imag(P^j_g), hence the negative terms in eq. 13. No complex calculus needs to be used.
 
 The paper uses acoustic the radiation force equation originally derived in the paper: [Acoustofluidics 7: the acoustic radiation force on small particles] (http://web-files.ait.dtu.dk/bruus/TMF/publications/pub2011/Bruus_Acoustofluidics_Tutorial_07_Lab_Chip_12_1014_2012.pdf). 
 
