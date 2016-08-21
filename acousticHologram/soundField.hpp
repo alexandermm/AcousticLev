@@ -15,20 +15,6 @@ inline double gradCompDot(complex<double> pf, complex<double> pfj,  complex<doub
 }
 
 
-//Imaginary pressure for each node
-template <typename DerivedA, typename DerivedB, typename DerivedC>
-inline complex<double> imagPressure(DenseBase<DerivedA>& phases, DenseBase<DerivedB>& K, DenseBase<DerivedC>& Mj)
-{
-	int N_trans = phases.size();	
-	complex<double> pressureComp = 0.0 + 0.0i;
-	
-	for (int n = 0; n < N_trans; n++) {
-		pressureComp += exp(i*phases(n)) * Mj(n, id(0,0,0));
-	}
-	 
-	return pressureComp;
-}
-
 //Presure derivatives for Gorkov potential and Force calculations
 template <typename DerivedA, typename DerivedB, typename DerivedC>
 inline void pressureDerivatives(DenseBase<DerivedA>& p, DenseBase<DerivedB>& phases, DenseBase<DerivedC>& Mj, int N_trans,int pSize)
@@ -40,14 +26,31 @@ inline void pressureDerivatives(DenseBase<DerivedA>& p, DenseBase<DerivedB>& pha
 	}
 }
 
+
+//Imaginary pressure for each node
+template <typename DerivedA, typename DerivedB>
+inline complex<double> imagPressure(DenseBase<DerivedA>& phases, DenseBase<DerivedB>& Mj)
+{
+	int N_trans = phases.size();
+	cvec p(1);	
+	complex<double> pressureComp;
+	
+	//Using 1 for pSize since only using p(id(0,0,0))
+	pressureDerivatives(p, phases, Mj, N_trans, 1);
+	
+	return pressureComp = p(0);
+}
+
+
 //Gorkov potential for each node
 template <typename DerivedA, typename DerivedB, typename DerivedC>
 inline double gorkovPotential(DenseBase<DerivedA>& phases, DenseBase<DerivedB>& K, DenseBase<DerivedC>& Mj)
 {
 	int N_trans = phases.size();	
-	int pSize = powInt(MAX_ID, NUM_IDS);
+	int pSize = MAX_ID;
 	cvec p(pSize);
 
+	//Using MAX_ID for pSize since only using p(id(n,0,0))
 	pressureDerivatives(p, phases, Mj, N_trans, pSize);
 
 	//Calculate potential
@@ -66,11 +69,12 @@ template <typename DerivedA, typename DerivedB, typename DerivedC>
 inline dmat particleForce(DenseBase<DerivedA>& phases, DenseBase<DerivedB>& K, DenseBase<DerivedC>& Mj)
 {
 	int a, n;	
-	int pSize = powInt(MAX_ID, NUM_IDS);
+	int pSize = MAX_ID*MAX_ID;
 	cvec p(pSize);	
 	dmat forceComponents(1,3);
 	int N_trans = phases.size();
 
+	//Using MAX_ID*MAX_ID for pSize since only using p(id(n,m,0))
 	pressureDerivatives(p, phases, Mj, N_trans, pSize);
 
 	double sumDerivs;

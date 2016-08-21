@@ -79,10 +79,8 @@ int main()
 	//Mj matrix (that will use id function)
 	cmat Mj(tArray.nTrans(), powInt(MAX_ID, NUM_IDS));
 
-	//Matrices used to pass levitation and transducer points and transducer normal 
+	//Matrices used to pass levitation points
 	dvec pLev(3);	
-	dvec transP(3); 
-	dvec transN(3);
 
 	dvec phases(tArray.nTrans());
 	vector<double> phasesv; phasesv.resize(phases.size());
@@ -174,7 +172,7 @@ int main()
 		//Get Mjs for each node using transducer info
 		getSecondDerivMjs(pt(0),pt(1),pt(2), P_0,k,r, Mj,tArray);
 
-		pressureMags(m) = abs(imagPressure(totalPhases, K,Mj));
+		pressureMags(m) = abs(imagPressure(totalPhases, Mj));
 		potential(m)    = gorkovPotential(totalPhases, K,Mj);
 		forces.row(m)   = particleForce(totalPhases, K,Mj);
 	}
