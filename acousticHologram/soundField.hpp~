@@ -81,10 +81,10 @@ inline dmat particleForce(DenseBase<DerivedA>& phases, DenseBase<DerivedB>& K, D
 	for (a = 1; a < MAX_ID; a++) {
 		sumDerivs = 0.0;
 
-		for (n = 1; n < MAX_ID; n++) sumDerivs += compDot(p(id(n,0,0)), p(id(n,a,0)));
+		for (n = 1; n < MAX_ID; n++) sumDerivs += compDot(p(id(n,a,0)), p(id(n,0,0)));
 
 		//Changed sign of expression since: F = -grad(U)
-		forceComponents(a-1) = -2.0*(K(0)*compDot(p(id(0,0,0)), p(id(a,0,0))) - K(1)*sumDerivs);
+		forceComponents(a-1) = -2.0*(K(0)*compDot(p(id(a,0,0)), p(id(0,0,0))) - K(1)*sumDerivs);
 	}
 	 
 	return forceComponents;

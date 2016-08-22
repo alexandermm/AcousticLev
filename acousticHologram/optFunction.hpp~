@@ -71,7 +71,7 @@ double myfunc(const std::vector<double> &phasesv, std::vector<double> &gradv, vo
 
 			for (n = 1; n < MAX_ID; n++) {         
 				sumDerivs += gradCompDot(p(id(n,a,0)),pj(x,id(n,a,0)),p(id(n,a,0)),pj(x,id(n,a,0))) + 
-					     gradCompDot(p(id(n,0,0)),pj(x,id(n,0,0)),p(id(n,a,a)),pj(x,id(n,a,a)));
+					     gradCompDot(p(id(a,0,0)),pj(x,id(a,0,0)),p(id(n,a,a)),pj(x,id(n,a,a)));
 			}
 
 			Uderiv(a-1) = 2.0*(K(0)*(gradCompDot(p(id(a,0,0)),pj(x,id(a,0,0)), p(id(a,0,0)),pj(x,id(a,0,0))) + 
