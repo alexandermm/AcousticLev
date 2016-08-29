@@ -2,7 +2,7 @@
 #define PARTICLEPATH_HPP
 
 
-inline double getMaxRe(dmat& path, const double ReFactor)
+inline double getMaxV(dmat& path)
 {
 	dmat Vs = path.block(0,3, path.rows(),3);
 	
@@ -13,7 +13,7 @@ inline double getMaxRe(dmat& path, const double ReFactor)
 	dmat VMags = Vx.cwiseProduct(Vx) + Vy.cwiseProduct(Vy) + Vz.cwiseProduct(Vz);		
 	VMags = VMags.cwiseSqrt();
 
-	return (VMags.maxCoeff())*ReFactor;
+	return VMags.maxCoeff();
 }
 
 

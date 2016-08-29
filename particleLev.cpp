@@ -209,7 +209,7 @@ int main()
 	double ReFactor   = rho_0*diam_p/mu_0;
 	double dragFactor = 0.5*rho_0*PI*0.25*diam_p*diam_p;
 	double mass_p     = V*rho_p;
-	double maxRe;
+	double maxV;
 
 	int nSteps = round( (tMax) / dt );
 	int NDIM   = NUM_IDS*2;
@@ -226,14 +226,14 @@ int main()
 		particlePFs.row(m) = particlePath.block(nSteps,0, 1,3);
 		particlePaths.block(3*m,0, 3,nSteps+1) = (particlePath.transpose()).block(0,0, 3,nSteps+1);
 
-		if (m == 0) maxRe = getMaxRe(particlePath, ReFactor);
+		if (m == 0) maxV = getMaxV(particlePath);
 	}
 
 	end = clock();
 	elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 	printf("Time to calculate particle paths:                      %4.3f secs\n\n", elapsed_secs);	
 
-	printf("Max Reynolds number of particle 1: %4.1f \n", maxRe);
+	printf("Max speed and Reynolds number of particle 1: %4.3f m/s and %6.1f\n", maxV/sf, maxV*ReFactor);
 	printf("Final location of particle 1:      (%3.2e, %3.2e, %3.2e) m\n\n",
 		particlePFs(0,0)/sf,particlePFs(0,1)/sf,particlePFs(0,2)/sf);
 
